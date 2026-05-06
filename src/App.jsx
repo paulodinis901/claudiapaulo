@@ -36,13 +36,9 @@ function App() {
       <iframe
         src={closumUrl}
         title="Convite de Casamento"
-        style={{
-          width: '100%',
-          height: '100%',
-          border: 'none',
-        }}
-        // Necessary permissions for the Closum invitation features
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+        style={{ width: '100%', height: '100%', border: 'none' }}
+        allow="autoplay; fullscreen; payment; geolocation; microphone; camera; clipboard-write"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
       />
     </div>
   );
