@@ -1,45 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
+import React, { useEffect } from 'react';
 
 /**
- * Main Application Component for the Wedding Invitation
- * Corrected the state setter name to avoid ReferenceError.
+ * Main Application Component
+ * Handles immediate redirection to Closum to bypass iframe security issues.
  */
 function App() {
-  // Define the state and its setter function correctly
-  const [closumUrl, setClosumUrl] = useState("https://lp.closum.co/lp/claudia-e-paulo/cp-casamento/");
-
   useEffect(() => {
-    // Set the browser tab title
-    document.title = "Casamento Cláudia & Paulo";
-
-    // Detect the current URL path from the browser
+    // Determine the destination based on the current path
     const path = window.location.pathname;
 
-    // Use setClosumUrl consistently to update the iframe source
+    // Base URL for the wedding invitation
+    const baseUrl = "https://lp.closum.co/lp/claudia-e-paulo/cp-casamento";
+
     if (path === "/success" || path === "/success/") {
-      setClosumUrl("https://lp.closum.co/lp/claudia-e-paulo/cp-casamento/success");
+      // Redirect to the success/thank you page
+      window.location.replace(`${baseUrl}/success`);
     } else {
-      setClosumUrl("https://lp.closum.co/lp/claudia-e-paulo/cp-casamento");
+      // Redirect to the main invitation page
+      window.location.replace(baseUrl);
     }
   }, []);
 
   return (
     <div style={{
-      width: '100vw',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       height: '100vh',
-      margin: 0,
-      padding: 0,
-      overflow: 'hidden',
-      backgroundColor: '#fff'
+      fontFamily: 'sans-serif'
     }}>
-      <iframe
-        src={closumUrl}
-        title="Convite de Casamento"
-        style={{ width: '100%', height: '100%', border: 'none' }}
-        allow="autoplay; fullscreen; payment; geolocation; microphone; camera; clipboard-write"
-        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-      />
+      <p>A redirecionar para o convite de Cláudia & Paulo...</p>
     </div>
   );
 }
